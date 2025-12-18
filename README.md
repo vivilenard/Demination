@@ -1,7 +1,10 @@
 
-  # Classy Dark Mode Dashboard
+  # Demination
 
-  This is a code bundle for Classy Dark Mode Dashboard. The original project is available at https://www.figma.com/design/v6z0nojlPPaOTmVmsUzaJH/Classy-Dark-Mode-Dashboard.
+  A simple app to clear your head.
+  <img width="1333" height="653" alt="scs" src="https://github.com/user-attachments/assets/bf3c4d8a-1687-410b-8a90-82a040d8b1fb" />
+
+  Check it out here: <a href="https://demination.vercel.app/">www.demination.vercel.app</a>
 
   ## Running the code
 
