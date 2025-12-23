@@ -1,10 +1,25 @@
-import { Button } from "@/components/ui/button"
+// src/App.tsx
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import AppLayout from "./components/app-layout"
+
+// Placeholder Components (Replace these later with your actual chapters)
+const TodoPage = () => <div>Chapter 1: To-Do List</div>
+const PlannerPage = () => <div>Chapter 2: Exercise Plan</div>
+const CataloguePage = () => <div>Chapter 3: Exercise Catalogue</div>
+const AIPage = () => <div>Chapter 4: AI Prompt</div>
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+          <Route element={<AppLayout />}>
+          <Route path="/" element={<TodoPage />} />
+          <Route path="/planner" element={<PlannerPage />} />
+          <Route path="/catalogue" element={<CataloguePage />} />
+          <Route path="/ai" element={<AIPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
