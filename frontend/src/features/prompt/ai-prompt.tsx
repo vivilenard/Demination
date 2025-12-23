@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Skeleton } from "@/components/ui/skeleton"
+import { GoogleGenerativeAI } from "@google/generative-ai"
+
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
 interface Message {
   role: "user" | "ai"
@@ -16,6 +19,8 @@ export function AIPrompt() {
   const [isLoading, setIsLoading] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
 
+//   console.log("API Key exists:", !!import.meta.env.VITE_GEMINI_API_KEY);
+//   console.log(import.meta.env.VITE_GEMINI_API_KEY);
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
     if (scrollRef.current) {
@@ -31,16 +36,29 @@ export function AIPrompt() {
     setInput("")
     setIsLoading(true)
 
+    try {
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" })
+        const result = await model.generateContent(input)
+        const response = await result.response
+        const text = response.text()
+
+        const aiMessage: Message = { role: "ai", content: text }
+        setMessages((prev) => [...prev, aiMessage])
+        } catch (error) {
+        console.error("Gemini Error:", error)
+        } finally {
+        setIsLoading(false)
+    }
     // --- MOCK RESPONSE LOGIC ---
-    setTimeout(() => {
-      const aiMessage: Message = { 
-        role: "ai", 
-        content: `This is a mock response to: "${input}". Once you connect the Gemini API, I will be able to answer your fitness and logic questions for real!` 
-      }
-      setMessages((prev) => [...prev, aiMessage])
-      setIsLoading(false)
-    }, 1500)
-  }
+        // setTimeout(() => {
+        // const aiMessage: Message = { 
+        //     role: "ai", 
+        //     content: `This is a mock response to: "${input}". Once you connect the Gemini API, I will be able to answer your fitness and logic questions for real!` 
+        // }
+        // setMessages((prev) => [...prev, aiMessage])
+        // setIsLoading(false)
+        // }, 1500)
+    }
 
   return (
     <div className="max-w-3xl mx-auto h-[80vh] flex flex-col gap-4">
