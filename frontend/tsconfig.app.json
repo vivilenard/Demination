@@ -25,7 +25,7 @@
     "noUncheckedSideEffectImports": true,
 
     //personal
-    "ignoreDeprecations": "6.0", //because baseURL will be deprecated in 7.0
+    //"ignoreDeprecations": "6.0", //because baseURL will be deprecated in 7.0
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
