@@ -10,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-
+import { ModeToggle } from "./mode-toggle"
 
 const items = [
   { title: "To-Do List", url: "/", icon: ListTodo },
@@ -39,6 +39,9 @@ export function AppSidebar() {
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup className="p-4 border-t">
+          <ModeToggle />
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>

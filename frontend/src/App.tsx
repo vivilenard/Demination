@@ -1,4 +1,5 @@
 // src/App.tsx
+import { ThemeProvider } from "./components/theme-provider"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import AppLayout from "./components/app-layout"
 import { TodoList } from "./features/todo/todo-list"
@@ -14,16 +15,18 @@ import { AIPrompt } from "./features/prompt/ai-prompt"
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-          <Route element={<AppLayout />}>
-          <Route path="/" element={<TodoList />} />
-          <Route path="/planner" element={<WeeklyPlanner />} />
-          <Route path="/catalogue" element={<ExerciseCatalogue />} />
-          <Route path="/ai" element={<AIPrompt />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <BrowserRouter>
+        <Routes>
+            <Route element={<AppLayout />}>
+            <Route path="/" element={<TodoList />} />
+            <Route path="/planner" element={<WeeklyPlanner />} />
+            <Route path="/catalogue" element={<ExerciseCatalogue />} />
+            <Route path="/ai" element={<AIPrompt />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 
