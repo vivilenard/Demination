@@ -46,3 +46,24 @@ Add the following code to the tsconfig.app.json file to resolve paths, for your 
   }
 }
 ```
+
+### Further Install
+Add the following code to the vite.config.ts so your app can resolve paths without error:
+
+```npm install -D @types/node```
+```
+import path from "path"
+import tailwindcss from "@tailwindcss/vite"
+import react from "@vitejs/plugin-react"
+import { defineConfig } from "vite"
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+})
+```
