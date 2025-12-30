@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "incremental": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2022",
     "useDefineForClassFields": true,
@@ -20,16 +21,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-
-    //personal
-    //"ignoreDeprecations": "6.0", //because baseURL will be deprecated in 7.0
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"]
 }
