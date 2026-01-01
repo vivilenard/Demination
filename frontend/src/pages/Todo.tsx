@@ -2,7 +2,6 @@ import {
   TextField,
   Box,
   Paper,
-  Typography,
   Checkbox,
   ListItemText,
   Button,
@@ -10,6 +9,7 @@ import {
 import { type SxProps } from '@mui/material';
 import type { Todo } from '../types';
 import { useState } from 'react';
+import PageHeader from '../components/PageHeader';
 
 // const todoList: Todo[] = [
 //   { id: '1', text: 'Learn React', completed: false },
@@ -20,17 +20,6 @@ type TodoInputProps = {
   todoList: Todo[];
   setTodoList: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
-
-function PageHeader({ children }: { children: React.ReactNode }) {
-  return (
-    <Typography
-      variant="h3"
-      sx={{ my: 4, textAlign: 'center', color: 'primary.main' }}
-    >
-      {children}
-    </Typography>
-  );
-}
 
 function TodoInput({ todoList, setTodoList }: TodoInputProps) {
   const [input, setInput] = useState<string>('');
@@ -85,9 +74,9 @@ function DeleteItems({deleteSelection} : {deleteSelection: () => (void)}) {
 
 function TodoPage() {
   const [todoList, setTodoList] = useState<Todo[]>([
-    { id: '1', text: 'Learn React', completed: false },
-    { id: '2', text: 'Build a todo app', completed: false },
-    { id: '3', text: 'Master TypeScript', completed: false },
+    { id: '1', text: 'Add navbar', completed: false },
+    { id: '2', text: 'Add AI Prompt', completed: false },
+    { id: '3', text: 'Add functionCall() to AI Prompt', completed: false },
   ]);
 
   const handleToggleComplete = (id: string) => {
