@@ -29,14 +29,22 @@ function TodoInput({ todoList, setTodoList }: TodoInputProps) {
       { id: crypto.randomUUID(), text: input, completed: false },
     ]);
     console.log(todoList);
-    setInput('')
+    setInput('');
   };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
     //console.log(input);
   };
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+    <Box
+      sx={{
+        display: 'flex',
+        mb: 2,
+        justifyContent: 'center',
+        // alignItems: 'center',
+        // flexDirection: 'column',
+      }}
+    >
       <TextField
         id="outlined-basic"
         variant="standard"
@@ -52,7 +60,15 @@ function TodoInput({ todoList, setTodoList }: TodoInputProps) {
   );
 }
 
-function TodoItems({ sx, todoList, handleToggleComplete }: { sx?: SxProps; todoList: Todo[]; handleToggleComplete: (id: string) => void}) {
+function TodoItems({
+  sx,
+  todoList,
+  handleToggleComplete,
+}: {
+  sx?: SxProps;
+  todoList: Todo[];
+  handleToggleComplete: (id: string) => void;
+}) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', ...sx }}>
       {todoList.map((todo) => (
@@ -60,7 +76,10 @@ function TodoItems({ sx, todoList, handleToggleComplete }: { sx?: SxProps; todoL
           key={todo.id}
           sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
         >
-          <Checkbox onChange={() => handleToggleComplete(todo.id)} checked={todo.completed} />
+          <Checkbox
+            onChange={() => handleToggleComplete(todo.id)}
+            checked={todo.completed}
+          />
           <ListItemText primary={todo.text} />
         </Paper>
       ))}
@@ -68,7 +87,7 @@ function TodoItems({ sx, todoList, handleToggleComplete }: { sx?: SxProps; todoL
   );
 }
 
-function DeleteItems({deleteSelection} : {deleteSelection: () => (void)}) {
+function DeleteItems({ deleteSelection }: { deleteSelection: () => void }) {
   return <Button onClick={() => deleteSelection()}>Delete</Button>;
 }
 
@@ -80,27 +99,24 @@ function TodoPage() {
   ]);
 
   const handleToggleComplete = (id: string) => {
-    setTodoList(
-      (prevList) => 
-        prevList.map(
-          (todo) => 
-            todo.id === id ?
-            {...todo, completed: !todo.completed } :
-            todo
-        )
-    )
-  }
-  const deleteSelection = () => {
-    setTodoList(
-      (prevList) => prevList.filter((todo) => !todo.completed)
+    setTodoList((prevList) =>
+      prevList.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
     );
-  }
+  };
+  const deleteSelection = () => {
+    setTodoList((prevList) => prevList.filter((todo) => !todo.completed));
+  };
 
   return (
     <>
       <PageHeader>To-Do List</PageHeader>
       <TodoInput todoList={todoList} setTodoList={setTodoList}></TodoInput>
-      <TodoItems handleToggleComplete={handleToggleComplete} todoList={todoList}></TodoItems>
+      <TodoItems
+        handleToggleComplete={handleToggleComplete}
+        todoList={todoList}
+      ></TodoItems>
       <DeleteItems deleteSelection={deleteSelection}></DeleteItems>
     </>
   );

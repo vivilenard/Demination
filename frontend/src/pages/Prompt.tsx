@@ -5,6 +5,8 @@ import type { AiConvo, Messages } from '../types';
 import AiConversation from './AiConversation';
 import { getGeminiResponse } from '../services/gemini';
 
+const colordebug = false;
+
 interface PromptInputProps {
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
@@ -73,12 +75,17 @@ function PromptPage({ Conversation, setAiConvo }: PromptPageProps) {
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',
-        // bgcolor: 'grey',
+        width: '100%',
+        maxWidth: '800px',
+        alignSelf: 'center',
+        bgcolor: colordebug ? 'grey': 'none',
+        my: '50px',
+        // width: '60%'
       }}
     >
-      <Stack spacing={6}>
+      <Stack spacing={6} sx={{ bgcolor: colordebug ? 'green': 'none', width: '100%'}}>
         <PageHeader>Talk to me</PageHeader>
-        <Stack spacing={2}>
+        <Stack spacing={2} sx={{ bgcolor: colordebug ? 'blue': 'none', width: '400px', alignSelf: 'center'}}>
           <PromptInput input={input} setInput={setInput}></PromptInput>
           <Button onClick={handleSend} sx={{ ml: 2 }}>
             Enter

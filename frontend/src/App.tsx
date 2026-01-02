@@ -6,12 +6,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import type { AiConvo } from './types';
 
-
 function App() {
   const [AiConvo, setAiConvo] = useState<AiConvo>({ id: '', messages: [] });
   return (
     <BrowserRouter>
-      <Container sx={{ bgcolor: 'background.primary', height: '100vh' }}>
+      <Container sx={{ bgcolor: 'background.primary', height: '100vh', display: 'flex',
+        justifyContent: 'center', alignItems: 'center', flexDirection: 'column'
+      }}>
         <Routes>
           <Route path="/" element={<TodoPage />} />
           <Route path="/ai" element={<PromptPage Conversation={AiConvo} setAiConvo={setAiConvo}/>} />
